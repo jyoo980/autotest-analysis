@@ -13,11 +13,8 @@ def parse_csid(url: str) -> Tuple[Optional[str], Optional[str]]:
         A tuple containing at most two csids. Note that both these fields are optional.    
     """
     if not str or "project" not in url:
-        print("foo")
         return (None, None)
     else:
         ids_match = re.search("_[a-z0-9]*_[a-z0-9]*", url)
         ids = ids_match.group(0).split("_")
-        print(ids)
         return (ids[1], ids[2])
-        
