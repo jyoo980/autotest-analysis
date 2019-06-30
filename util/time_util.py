@@ -11,7 +11,7 @@ def to_readable(ms: int) -> str:
     Returns:
         A string in the form: YYYY-MM-DD hh:mm:ss.
     """
-    return _to_datetime(ms)
+    return str(_to_datetime(ms))
 
 def diff_min(start_ms: int, end_ms: int) -> float:
     """Produces the difference between two timestamps in minutes
