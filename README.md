@@ -10,3 +10,7 @@ This repository contains Python scripts which are used to extract, transform, an
 ## Running tests
 
 To execute unit tests, run `pytest test/` from root.
+
+## Notes
+
+This repository makes use of type annotations as much as possible. When contributing code, please make sure to include any relevant type annotations. 
