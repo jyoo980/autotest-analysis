@@ -16,13 +16,12 @@ def write_to_csv(data: List[List[Any]], filename: str) -> None:
         None
     """
     if data:
-        file_path: str = _get_path(filename)
-        with open(file_path, "w") as csv_file:
+        with open(get_path(filename), "w") as csv_file:
             writer = csv.writer(csv_file)
             for row in data:
                 writer.writerow(row)
 
         csv_file.close()
 
-def _get_path(filename) -> str:
+def get_path(filename) -> str:
     return os.path.join("..", DATA_FOLDER_NAME, filename)
