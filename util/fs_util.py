@@ -2,6 +2,8 @@ from typing import *
 import csv
 import os
 
+DATA_FOLDER_NAME = "data"
+
 def get_path(filename: str) -> str:
     """Produces a file path used in write operations
     

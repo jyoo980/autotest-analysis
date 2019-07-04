@@ -20,3 +20,7 @@ def test_parse_csid_210_url():
 def test_parse_csid_210_fails_gracefully():
     invalid_210_url: str = "https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T2/PomoTODO_/commit/9f496ae3ceefc50cb4d04e2b633fc74ed86f034d"
     assert parse_csid(invalid_210_url) == (None, None)
+
+def test_parse_csid_single_id():
+    d0_url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T2/d0_l4k0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
+    parse_csid == ("l4k0b", None)
