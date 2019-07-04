@@ -1,4 +1,4 @@
-from typing import Tuple, Optional, List
+from typing import Tuple, Optional, List, Set
 import re
 
 REGEXP_310: str = "_[a-z0-9]*_[a-z0-9]*"
@@ -35,13 +35,13 @@ def csid_list(id_tuples: List[Tuple[Optional[str], Optional[str]]]) -> List[str]
     Returns:
         A list containin all the csids found within the given list of tuples
     """
-    ids: List[str] = []
+    ids: Set[str] = set()
     for id_tuple in id_tuples:
         if id_tuple[0]:
-            ids.append(id_tuple[0])
+            ids.add(id_tuple[0])
         if id_tuple[1]:
-            ids.append(id_tuple[1])
-    return ids
+            ids.add(id_tuple[1])
+    return list(ids)
 
 def _contains_match(url: str) -> bool:
     return url and re.search(REGEXP_310, url) or re.search(REGEXP_210, url)

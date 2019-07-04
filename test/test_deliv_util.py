@@ -31,4 +31,15 @@ def test_csid_list_tuples_all_none():
 
 def test_csid_list_tuples_some_none():
     tuples: List[Tuple[Optional[str], Optional[str]]] = [("l4k0b", None), ("y2k0b", None)]
-    assert csid_list(tuples) == ["l4k0b", "y2k0b"]
+    csids: List[str] = csid_list(tuples)
+    assert len(csids) == 2
+    assert "l4k0b" in csids
+    assert "y2k0b" in csids
+
+
+def test_csid_list_tuples_duplicate():
+    tuples: List[Tuple[Optional[str], Optional[str]]] = [("l4k0b", "y2k0b"), ("l4k0b", None)]
+    csids: List[str] = csid_list(tuples)
+    assert len(csids) == 2
+    assert "l4k0b" in csids
+    assert "y2k0b" in csids
