@@ -24,3 +24,11 @@ def test_parse_csid_210_fails_gracefully():
 def test_parse_csid_single_id():
     d0_url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T2/d0_l4k0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
     parse_csid == ("l4k0b", None)
+
+def test_csid_list_tuples_all_none():
+    tuples: List[Tuple[Optional[str], Optional[str]]] = [(None, None), (None, None)]
+    assert csid_list(tuples) == []
+
+def test_csid_list_tuples_some_none():
+    tuples: List[Tuple[Optional[str], Optional[str]]] = [("l4k0b", None), ("y2k0b", None)]
+    assert csid_list(tuples) == ["l4k0b", "y2k0b"]
