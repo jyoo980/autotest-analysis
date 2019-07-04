@@ -5,6 +5,7 @@ REGEXP_310: str = "_[a-z0-9]*_[a-z0-9]*"
 REGEXP_210: str = "[a-z][0-9][a-z][0-9][a-z]*/"
 DELIM_310: str = "_"
 DELIM_210: str = "/"
+INVALID_IDS: Set[str] = {'pcarter', 'rtholmes', 'autotest'}
 
 def parse_csid(url: str) -> Tuple[Optional[str], Optional[str]]:
     """Parses a tuple of csids from a given commit url. As long as the given commit url contains
@@ -41,7 +42,27 @@ def csid_list(id_tuples: List[Tuple[Optional[str], Optional[str]]]) -> List[str]
             ids.add(id_tuple[0])
         if id_tuple[1]:
             ids.add(id_tuple[1])
+    ids = ids - INVALID_IDS
     return list(ids)
+
+def tup_to_str(tup: Tuple[Optional[str], Optional[str]]) -> str:
+    """Converts a tuple containing two optional strings representing csids to a single string
+    useful for doing contains operations with dataframes
+
+    Args:
+        tup: the tuple which we want to convert into a string representation
+    Returns:
+        given a tuple (aaaa,bbbb), return "aaaa / bbbb"
+        else return the single string
+    """
+    first: Optional[str] = tup[0]
+    second: Optional[str] = tup[1]
+    if first and second:
+        return "{first} / {second}".format(first=first, second=second)
+    elif first:
+        return first
+    else:
+        return second
 
 def _contains_match(url: str) -> bool:
     return url and re.search(REGEXP_310, url) or re.search(REGEXP_210, url)

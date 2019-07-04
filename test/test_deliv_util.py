@@ -43,3 +43,15 @@ def test_csid_list_tuples_duplicate():
     assert len(csids) == 2
     assert "l4k0b" in csids
     assert "y2k0b" in csids
+
+def test_tup_to_str_both_some():
+    tup = ("l4k0b", "y2k0b")
+    assert tup_to_str(tup) == "l4k0b / y2k0b"
+
+def test_tup_to_str_first_none():
+    tup = (None, "l4k0b")
+    assert tup_to_str(tup) == "l4k0b"
+
+def test_tup_to_str_second_none():
+    tup = ("l4k0b", None)
+    assert tup_to_str(tup) == "l4k0b"
