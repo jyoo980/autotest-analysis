@@ -25,6 +25,22 @@ def test_parse_csid_single_id():
     d0_url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T2/d0_l4k0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
     parse_csid == ("l4k0b", None)
 
+def test_parse_one_csid_get_empty():
+    url: str = "https://github.ugrad.cs.ubc.ca/"
+    assert parse_one_csid(url) == ""
+
+def test_parse_one_csid_valid():
+    url: str = "https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T2/assign0_r6s7/commit/aff7f0ec5ac8304041ea4a2175fe0b8462887223"
+    assert parse_one_csid(url) == "r6s7"
+
+def test_parse_one_csid_valid():
+    url: str = "https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T2/assign0_l4k0b/commit/aff7f0ec5ac8304041ea4a2175fe0b8462887223"
+    assert parse_one_csid(url) == "l4k0b"
+
+def test_parse_one_csid_pomo_todo():
+    url: str = "https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T2/PomoTODO_phase3_l4k0b/commit/baca4a94121021dae0bf37e6f89c4710a770c839"
+    assert parse_one_csid(url) == "l4k0b"
+
 def test_csid_list_tuples_all_none():
     tuples: List[Tuple[Optional[str], Optional[str]]] = [(None, None), (None, None)]
     assert csid_list(tuples) == []
@@ -35,7 +51,6 @@ def test_csid_list_tuples_some_none():
     assert len(csids) == 2
     assert "l4k0b" in csids
     assert "y2k0b" in csids
-
 
 def test_csid_list_tuples_duplicate():
     tuples: List[Tuple[Optional[str], Optional[str]]] = [("l4k0b", "y2k0b"), ("l4k0b", None)]

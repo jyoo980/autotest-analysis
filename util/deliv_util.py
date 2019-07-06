@@ -26,6 +26,22 @@ def parse_csid(url: str) -> Tuple[Optional[str], Optional[str]]:
     else:
         return (None, None)
 
+def parse_one_csid(url: str) -> str:
+    """Parses a single csid from a given commit url. Best used for courses where commit urls are 
+    comprised of only one student's csid (Not like 310)
+
+    Args:
+        url: the commit url from which a csid is to be extracted from
+    
+    Returns:
+        a string representing a csid which has been extracted from a commit url
+    """
+    pair: Tuple[Optional[str], Optional[str]] = parse_csid(url)
+    if pair == (None, None):
+        return ""
+    else:
+        return pair[0]
+
 def csid_list(id_tuples: List[Tuple[Optional[str], Optional[str]]]) -> List[str]:
     """Produces a list of csids from a list of tuples which may have a pair of csids, e.g.
     [(l4k0b, None), (None, None), (None, y2k0b)]
