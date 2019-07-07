@@ -11,7 +11,7 @@ import pandas as pd
 
 scaler = StandardScaler()
 tree_model = DecisionTreeRegressor()
-rf_model = RandomForestRegressor()
+rf_model = RandomForestRegressor(max_depth=200, n_estimators=100)
 data = pd.read_csv(get_path_dir("data/cleaned/310", "num_commits_vs_scores.csv"))
 
 n,d = data.shape
