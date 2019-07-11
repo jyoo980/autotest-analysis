@@ -1,7 +1,7 @@
-from typing import Tuple, Optional, List, Set
+from typing import *
 import re
 
-REGEXP_310: str = "_[a-z0-9]*_[a-z0-9]*"
+REGEXP_310: str = "_[a-z0-9]*_[a-z0-9]*(_[a-z0-9]*)*"
 REGEXP_210: str = "[a-z][0-9][a-z][0-9][a-z]*/"
 DELIM_310: str = "_"
 DELIM_210: str = "/"
@@ -79,6 +79,34 @@ def tup_to_str(tup: Tuple[Optional[str], Optional[str]]) -> str:
         return first
     else:
         return second
+
+def list_to_str(lst: List[str]) -> str:
+    return " ".join(lst)
+
+def parse_csid_to_list(url: str) -> List[str]:
+    """Parses a LIST of csids from a given commit url
+
+    Args:
+        url: the commit url from which we want to parse a list of csids
+    Returns:
+        given a github commit url containing 1 or more csids, return a list of 
+        csids in a list form.
+    """
+    if _contains_match(url):
+        pattern, delim = (REGEXP_310, DELIM_310) if "project" in url else (REGEXP_210, DELIM_210)
+        ids_match = re.search(pattern, url)
+        ids: List[str] = ids_match.group(0).split(delim)
+        return ids[:1] if pattern == REGEXP_210 else ids[1:]
+    else:
+        return []
+
+def flatten_ids(ids: Any):
+    flattened: Set[str] = set()
+    for id_list in ids:
+        for csid in id_list:
+            flattened.add(csid)
+    flattened = flattened - INVALID_IDS
+    return list(flattened)
 
 def _contains_match(url: str) -> bool:
     return url and re.search(REGEXP_310, url) or re.search(REGEXP_210, url)

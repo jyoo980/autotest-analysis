@@ -70,3 +70,15 @@ def test_tup_to_str_first_none():
 def test_tup_to_str_second_none():
     tup = ("l4k0b", None)
     assert tup_to_str(tup) == "l4k0b"
+
+def test_parse_csid_to_list_single():
+    url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T2/d0_l4k0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
+    assert parse_csid_to_list(url) == ["l4k0b"]
+
+def test_parse_csid_to_list_double():
+    url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T2/project_l4k0b_y2k0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
+    assert parse_csid_to_list(url) == ["l4k0b", "y2k0b"]
+
+def test_parse_csid_to_list_triple():
+    url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T2/project_l4k0b_y2k0b_r7p0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
+    assert parse_csid_to_list(url) == ["l4k0b", "y2k0b", "r7p0b"]
