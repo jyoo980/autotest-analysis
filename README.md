@@ -2,6 +2,8 @@
 
 This repository contains Python scripts which are used to extract, transform, and analyze data from MongoDB dumps from the AutoTest service in use at the Department of Computer Science at UBC.
 
+This work was done as part of a CPSC 448 at UBC. To view the paper, see `paper/how-many-commits.pdf`.
+
 ## Dependencies
 
 - Python (at least version 3.6)
