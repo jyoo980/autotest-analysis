@@ -82,3 +82,11 @@ def test_parse_csid_to_list_double():
 def test_parse_csid_to_list_triple():
     url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T2/project_l4k0b_y2k0b_r7p0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
     assert parse_csid_to_list(url) == ["l4k0b", "y2k0b", "r7p0b"]
+
+def test_parse_310_term_1():
+    url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T1/project_l4k0b_y2k0b_r7p0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
+    assert parse_term(url) == "T1"
+
+def test_parse_310_term_2():
+    url: str = "https://github.ugrad.cs.ubc.ca/CPSC310-2018W-T2/project_l4k0b_y2k0b_r7p0b/commit/6785aed12ca2181f458a074a35d6b72ea5739630"
+    assert parse_term(url) == "T2"

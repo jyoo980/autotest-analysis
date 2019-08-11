@@ -1,4 +1,3 @@
-from typing import *
 import csv
 import os
 

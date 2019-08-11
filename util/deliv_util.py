@@ -80,6 +80,19 @@ def tup_to_str(tup: Tuple[Optional[str], Optional[str]]) -> str:
     else:
         return second
 
+def parse_term(url: str) -> str:
+    """Parses a url which has a string of form CPSC-XXX-XXXXTX, and produces TX (the term)
+
+    Args:
+        url: the url which we want to parse for the term
+    Returns:
+        given a url, return the term to which it belongs
+    """
+    pattern: str = "/CPSC[a-zA-Z-_0-9]*/"
+    match = re.search(pattern, url)
+    full_course_and_term: str = match.group(0)
+    return full_course_and_term.split("-")[2].replace("/", "")
+
 def list_to_str(lst: List[str]) -> str:
     return " ".join(lst)
 
@@ -104,8 +117,9 @@ def flatten_ids(ids: Any):
     flattened: Set[str] = set()
     for id_list in ids:
         for csid in id_list:
-            flattened.add(csid)
-    flattened = flattened - INVALID_IDS
+            if csid not in INVALID_IDS:
+                flattened.add(csid)
+                
     return list(flattened)
 
 def _contains_match(url: str) -> bool:
