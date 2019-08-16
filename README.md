@@ -8,6 +8,8 @@ This work was done as part of a CPSC 448 at UBC. To view the paper, see `paper/h
 
 - Python (at least version 3.6)
 - Pytest
+- pip
+- sklearn
 
 ## Running tests
 
